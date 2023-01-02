@@ -48,11 +48,8 @@ export class Inventario {
     return this.articulos;
   }
 
-  resetInventory() {
-    this.articulos = [];
-  }
-
-  addInventory(inventory) {
-    this.articulos = inventory;
+  resetInventory(inventory) {
+    this.articulos = inventory || [];
+    return this.articulos;
   }
 }
