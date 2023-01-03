@@ -17,3 +17,5 @@ products.forEach((id) => {
   cart.addProductoCart(product, 1);
 });
 
+console.log(cart.getShoppingCart());
+console.log(cart. precioTotal())
