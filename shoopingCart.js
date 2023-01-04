@@ -1,42 +1,47 @@
+import { INVENTARIO } from "./data.js";
 export class ShoppingCart {
-  constructor(productos = []) {
-    this.productos = productos;
+  constructor(products = []) {
+    this.products = products;
   }
 
   getShoppingCart() {
-    return this.productos;
+    return this.products;
   }
 
-  addProductoCart(producto, quantity) {
-    let index = this.productos.findIndex((data) => data.id === producto.id);
-    let isProduct = this.productos[index];
+  addProductCart(product, quantity) {
+    let index = this.products.findIndex((data) => data.id === product.id);
+    let isProduct = this.products[index];
+    let inventory = INVENTARIO.findIndex((data) => data.id === product.id);
 
     if (isProduct) {
-      this.productos[index].quantity += quantity;
+      this.products[index].quantity += quantity;
     } else {
-      this.productos.push({ ...producto, quantity });
+      this.products.push({ ...product, quantity });
+    }
+
+    if (INVENTARIO[inventory].quantity - quantity >= 0) {
+      INVENTARIO[inventory].quantity -= quantity;
     }
   }
 
   deleteQuantityById(id, quantity) {
-    const producto = this.productos.find((producto) => producto.id === id);
-    const _quantity = producto.quantity - quantity;
+    const product = this.products.find((product) => product.id === id);
+    const _quantity = product.quantity - quantity;
 
     if (_quantity > 0) {
-      producto.quantity = producto.quantity - quantity;
-      return producto.quantity;
+      product.quantity = product.quantity - quantity;
+      return product.quantity;
     }
-
-    this.productos = this.productos.filter((producto) => producto.id !== id);
+    this.products = this.products.filter((product) => product.id !== id);
   }
 
   clearCart() {
-    this.productos = [];
+    this.products = [];
   }
 
-  precioTotal() {
-    const productos = this.productos;
-    const totalPyQ = productos.reduce((acc, cur) => {
+  totalPrice() {
+    const products = this.products;
+    const totalPyQ = products.reduce((acc, cur) => {
       const total = cur.quantity * cur.price;
       return acc + total;
     }, 0);

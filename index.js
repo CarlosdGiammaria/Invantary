@@ -9,13 +9,26 @@ import {
 
 const inventary = new Inventario(INVENTARIO);
 
+// console.log(inventary.getProductById(1))
+// console.log(inventary.getProductsByCategory(HOME_CATEGORY));
+//console.log(inventary.addQuantity(2,1))
+//console.log(inventary. deleteQuantity(2,1))
+// console.log(inventary.updateProduct(1,{name:'clorox',}))
+// console.log(inventary.getProductById(1))
+// console.log(inventary.deleteProduct(1))
+
 
 const cart = new ShoppingCart();
-const products = [1, 2, 2, 1,2,2];
+console.log(inventary. getInventory())
+const products = [2,2,2,2,2,2,2,2,2,2,2,2,];
 products.forEach((id) => {
   const product = inventary.getProductById(id);
-  cart.addProductoCart(product, 1);
+  cart.addProductCart(product, 1);
 });
+//este console es para comprobar que reste la cantidad que se ingreasa al carrito
+console.log(inventary. getInventory())
 
-console.log(cart.getShoppingCart());
-console.log(cart. precioTotal())
+console.log(cart.getShoppingCart())
+// console.log(cart. deleteQuantityById());
+//console.log(cart.clearCart())
+// console.log(cart. precioTotal())
