@@ -17,7 +17,7 @@ inventary.getProductById(1);
 
 //Esto trae un producto o productos por categoria
 //HOME_CATEGORY, FOOD_CATEGORY , PERSONAL_USE_CATEGORY
-inventary.getProductsByCategory();
+inventary.getProductsByCategory(HOME_CATEGORY);
 
 //Agrega a un producto cierta cantidad y la retorna
 inventary.addQuantity(2, 1);
@@ -45,21 +45,21 @@ cart.getShoppingCart();
 const products = [1, 2, 3, 4];
 products.forEach((id) => {
   const product = inventary.getProductById(id);
-  const success = cart.addProductCart(product, 1);
 
-  if (success) {
-    console.log(`Producto agregado: ${product.name}`);
-    return;
+  if (product) {
+    const success = cart.addProductCart(product, 1);
+
+    if (success) {
+      console.log(`Producto agregado: ${product.name}`);
+      return;
+    }
+    console.log(`no hay ${product.name} disponible`);
   }
-  console.log(`no hay ${product.name} disponible`);
 });
 
 // Disminuye la cantidad de un producto en el carrito
 //retorna la cantidad que queda
 cart.deleteQuantityById(2, 1);
-
-//Limpia el carrito
-cart.clearCart();
 
 //Calcula todos los precios del carrito
 cart.totalPrice();
@@ -71,3 +71,10 @@ cart.buy((cart) => {
     return inventary.deleteQuantity(product.id, product.quantity);
   });
 });
+
+
+//Trae el carrito
+cart.getShoppingCart();
+
+//Calcula todos los precios del carrito
+cart.totalPrice();

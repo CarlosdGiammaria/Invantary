@@ -24,6 +24,8 @@ export class ShoppingCart {
 
   deleteQuantityById(id, quantity) {
     const product = this.products.find((product) => product.id === id);
+    if (!product) return
+
     const _quantity = product.quantity - quantity;
 
     if (_quantity > 0) {
@@ -54,8 +56,10 @@ export class ShoppingCart {
         products: this.products,
         total: this.totalPrice(),
       });
-    return success;
     }
+
     success && this.clearCart();
+
+    return success
   }
 }
