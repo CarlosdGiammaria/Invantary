@@ -1,4 +1,3 @@
-import { INVENTARIO } from "./data.js";
 export class ShoppingCart {
   constructor(products = []) {
     this.products = products;
@@ -11,7 +10,8 @@ export class ShoppingCart {
   addProductCart(product, quantity) {
     let index = this.products.findIndex((data) => data.id === product.id);
     let isProduct = this.products[index];
-    let inventory = INVENTARIO.findIndex((data) => data.id === product.id);
+
+    if (!product.quantity) return false;  
 
     if (isProduct) {
       this.products[index].quantity += quantity;
@@ -19,9 +19,7 @@ export class ShoppingCart {
       this.products.push({ ...product, quantity });
     }
 
-    if (INVENTARIO[inventory].quantity - quantity >= 0) {
-      INVENTARIO[inventory].quantity -= quantity;
-    }
+    return true;
   }
 
   deleteQuantityById(id, quantity) {
@@ -35,19 +33,29 @@ export class ShoppingCart {
     this.products = this.products.filter((product) => product.id !== id);
   }
 
-  clearCart() {
-    this.products = [];
-  }
-
   totalPrice() {
     const products = this.products;
-    const totalPyQ = products.reduce((acc, cur) => {
+    const totalP = products.reduce((acc, cur) => {
       const total = cur.quantity * cur.price;
       return acc + total;
     }, 0);
 
-    return totalPyQ;
+    return totalP;
+  }
+
+  clearCart() {
+    this.products = [];
+  }
+
+  buy(ca) {
+    let success;
+    if (ca) {
+      success = ca({
+        products: this.products,
+        total: this.totalPrice(),
+      });
+    return success;
+    }
+    success && this.clearCart();
   }
 }
-
-
