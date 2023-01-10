@@ -9,7 +9,7 @@ export const INVENTARIO = [
     description: "jabon verde de natura",
     image:
       "https://cdn.lorem.space/images/face/.cache/150x220/nico-marks-25gAg2MOXxQ-unsplash.jpg",
-    quantity: 40,
+    quantity: 12,
     price: 2000,
     category: HOME_CATEGORY,
   },
@@ -19,7 +19,7 @@ export const INVENTARIO = [
     description: "color rojo, tripe  cepillo",
     image:
       "https://cdn.lorem.space/images/face/.cache/150x220/jake-fagan-Y7C7F26fzZM-unsplash.jpg",
-    quantity: 10,
+    quantity: 12,
     price: 2000,
     category: PERSONAL_USE_CATEGORY,
   },
