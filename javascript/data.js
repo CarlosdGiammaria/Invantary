@@ -6,7 +6,7 @@ export const INVENTARIO = [
   {
     id: 1,
     name: "jabon",
-    description: "jabon verde de natura",
+    description: "jabon verde natural",
     image:
       "https://cdn.lorem.space/images/face/.cache/150x220/nico-marks-25gAg2MOXxQ-unsplash.jpg",
     quantity: 12,

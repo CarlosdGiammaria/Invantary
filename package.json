@@ -2,9 +2,10 @@
   "name": "control-de-inventario",
   "version": "1.0.0",
   "description": "esta es una libreria de inventario",
-  "main": "./index.js",
+  "main": "./javascript/test.js",
+  
   "scripts": {
-    "dev": "nodemon ./index.js",
+    "dev": "nodemon ./test.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "carlos <carlosgiammaria29@gmail.com>",
