@@ -9,22 +9,24 @@ export class ShoppingCart {
 
   addProductCart(product, quantity) {
     let index = this.products.findIndex((data) => data.id === product.id);
-    let isProduct = this.products[index];
+    let productInsideCart = this.products[index];
 
-    if (!product.quantity) return false;  
+    if (!product.quantity) return false;
 
-    if (isProduct) {
+    if (productInsideCart) {
+      if (productInsideCart.quantity + quantity > product.quantity) {
+        return false;
+      }
       this.products[index].quantity += quantity;
     } else {
       this.products.push({ ...product, quantity });
     }
-
     return true;
   }
 
   deleteQuantityById(id, quantity) {
     const product = this.products.find((product) => product.id === id);
-    if (!product) return
+    if (!product) return;
 
     const _quantity = product.quantity - quantity;
 
@@ -60,6 +62,6 @@ export class ShoppingCart {
 
     success && this.clearCart();
 
-    return success
+    return success;
   }
 }

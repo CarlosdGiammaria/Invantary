@@ -72,7 +72,6 @@ cart.buy((cart) => {
   });
 });
 
-
 //Trae el carrito
 cart.getShoppingCart();
 
