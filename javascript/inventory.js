@@ -9,6 +9,11 @@ export class Inventory {
     return this.articles.find((product) => product.id === id);
   }
 
+  getCategories() {
+    const categories = this.articles.map((product) => product.category);
+    return [...new Set(categories)];
+  }
+
   getProductsByCategory(category) {
     return this.articles.filter((product) => product.category === category);
   }

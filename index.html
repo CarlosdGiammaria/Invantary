@@ -18,32 +18,34 @@
         </h5>
       </div>
 
-      <nav class="nav">
-        <ul class="nav__list js-nav-options">
-          <li><a href="" class="list__item">Products</a></li>
-          <li><a href="" class="list__item js-home">Home</a></li>
-          <li><a href="" class="list__item js-personal">Personal</a></li>
-          <li><a href="" class="list__item js-food">Food</a></li>
+      <nav class="nav hide js-navigation">
+        <ul class="nav__list js-show-categories">
+          <li>
+            <a href="" class="list__item js-category" data-filter="ALL"
+              >Products</a
+            >
+          </li>
         </ul>
       </nav>
       <div class="btn js-btn-cart">
         <i class="fa-sharp fa-solid fa-cart-shopping icon"></i>
       </div>
-     
+
       <div class="js-cart shopping-cart">
-     
         <div class="shopping-cart__top">
           <button class="btn js-btn-exit">
             <i class="fa-sharp fa-solid fa-circle-xmark icon"></i>
           </button>
           <h3 class="shopping-cart__title">Your Products</h3>
         </div>
-        
-        <ul class="shopping-cart__list js-cart-list">
-          <div class="shopping-cart__total-price">
-            <span>total: $4000</span>
-          </div>
-        </ul>
+
+        <ul class="shopping-cart__list js-cart-list"></ul>
+        <div class="shopping-cart__payable-value js-payable-value">
+          <span class="js-total-price">$0</span>
+          <button class="btn btn--success js-btn-buy">
+            <i class="fa-solid fa-cart-arrow-down icon"></i>
+          </button>
+        </div>
       </div>
       <!--  -->
     </header>

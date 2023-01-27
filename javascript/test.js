@@ -38,29 +38,31 @@ inventary.deleteProduct(2);
 
 const cart = new ShoppingCart();
 //Trae el carrito
-cart.getShoppingCart();
+console.log(cart.getShoppingCart());
 
 //agrega un producto o productos al carrito
 //si, solo si, la cantidad del producto a agregar no está en 0
-const products = [1, 2, 3, 4];
-products.forEach((id) => {
-  const product = inventary.getProductById(id);
+const products = [1, 2, 2, 2, 2, 2, 2, 2, 3, 4];
+console.log(
+  products.forEach((id) => {
+    const product = inventary.getProductById(id);
 
-  if (product) {
-    const success = cart.addProductCart(product, 1);
+    if (product) {
+      const success = cart.addProductCart(product, 1);
 
-    if (success) {
-      console.log(`Producto agregado: ${product.name}`);
-      return;
+      if (success) {
+        console.log(`Producto agregado: ${product.name}`);
+        return;
+      }
+      console.log(`no hay ${product.name} disponible`);
     }
-    console.log(`no hay ${product.name} disponible`);
-  }
-});
+  })
+);
 
 // Disminuye la cantidad de un producto en el carrito
 //retorna la cantidad que queda
-cart.deleteQuantityById(2, 1);
-
+console.log(cart.deleteQuantityById(2, 1));
+console.log(cart.getShoppingCart());
 //Calcula todos los precios del carrito
 cart.totalPrice();
 

@@ -39,4 +39,24 @@ export const INVENTARIO = [
     price: 2300,
     category: FOOD_CATEGORY,
   },
+
+  {
+    id: 5,
+    name: "manzana",
+    description: "fruta",
+    image: "https://biotrendies.com/wp-content/uploads/2015/06/manzana.jpg",
+    quantity: 10,
+    price: 1600,
+    category: FOOD_CATEGORY,
+  },
+  {
+    id: 6,
+    name: "hilo dental",
+    description: "sabor a menta fresca",
+    image:
+      "https://www.colgate.com/content/dam/cp-sites/oral-care/oral-care-center/es-co/product-detail-pages/specialty/hilo-dental-colgate-menta-50m-pack.jpg",
+    quantity: 20,
+    price: 1200,
+    category: PERSONAL_USE_CATEGORY,
+  },
 ];
