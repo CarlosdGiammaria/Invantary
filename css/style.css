@@ -161,7 +161,7 @@ body {
   gap: 19px;
 }
 
-.shopping-cart__payable-value{
+.shopping-cart__payable-value {
   display: flex;
   flex-flow: column wrap;
   align-items: center;
@@ -182,7 +182,6 @@ body {
 }
 
 .card__img img {
-
   width: 135;
   height: 110px;
   border-radius: 8px;

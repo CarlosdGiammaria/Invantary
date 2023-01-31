@@ -14,6 +14,7 @@ const btnExit = document.querySelector(".js-btn-exit");
 const showCategories = document.querySelector(".js-show-categories");
 const navigation = document.querySelector(".js-navigation");
 const totalPrice = document.querySelector(".js-total-price");
+const btnBuy = document.querySelector(".js-btn-buy");
 
 const inventary = new Inventory(INVENTARIO);
 const cart = new ShoppingCart();
@@ -38,6 +39,20 @@ document.addEventListener("DOMContentLoaded", () => {
     event.preventDefault();
     const ap = document.querySelector(".js-cart");
     ap.classList.remove("speed-in");
+  });
+
+  btnBuy.addEventListener("click", (e) => {
+    e.preventDefault();
+    productsList.innerHTML = "";
+
+    cart.buy((cart) => {
+      return cart.products.every((product) => {
+        return inventary.deleteQuantity(product.id, product.quantity);
+      });
+    });
+    showCart(cart.getShoppingCart());
+
+    renderProducts(inventary.getInventory());
   });
 
   showCategories.addEventListener("click", (event) => {
@@ -69,7 +84,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const isAdded = cart.addProductCart(product, 1);
       ap.classList.add("speed-in");
     }
-
     showCart(cart.getShoppingCart());
   });
 
