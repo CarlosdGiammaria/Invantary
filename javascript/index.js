@@ -15,6 +15,7 @@ const showCategories = document.querySelector(".js-show-categories");
 const navigation = document.querySelector(".js-navigation");
 const totalPrice = document.querySelector(".js-total-price");
 const btnBuy = document.querySelector(".js-btn-buy");
+const counter = document.querySelector(".js-counter");
 
 const inventary = new Inventory(INVENTARIO);
 const cart = new ShoppingCart();
@@ -25,9 +26,18 @@ const CATEROGORY_MAP = {
   [FOOD_CATEGORY]: "Food",
 };
 
+const store = killa.createStore({ count: 0 });
+
 document.addEventListener("DOMContentLoaded", () => {
   renderProducts(inventary.getInventory());
   renderCategories(inventary.getCategories());
+
+  store.subscribe(
+    (state) => {
+      counter.textContent = `${state.count}`;
+    },
+    (state) => state.count
+  );
 
   btnCart.addEventListener("click", (event) => {
     event.preventDefault();
@@ -50,6 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return inventary.deleteQuantity(product.id, product.quantity);
       });
     });
+    renderCounter(cart.getItems());
     showCart(cart.getShoppingCart());
 
     renderProducts(inventary.getInventory());
@@ -81,10 +92,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (target.classList.contains("js-btn-add-product")) {
       const id = target.dataset.productId;
       const product = inventary.getProductById(parseInt(id));
-      const isAdded = cart.addProductCart(product, 1);
-      ap.classList.add("speed-in");
+
+      cart.addProductCart(product, 1);
     }
     showCart(cart.getShoppingCart());
+    renderCounter(cart.getItems());
   });
 
   cartList.addEventListener("click", (event) => {
@@ -97,16 +109,26 @@ document.addEventListener("DOMContentLoaded", () => {
       const product = inventary.getProductById(parseInt(id));
       if (target.classList.contains("js-add-quntity")) {
         cart.addProductCart(product, 1);
+        renderCounter(cart.getItems());
       }
 
       if (target.classList.contains("js-delete-quntity")) {
         cart.deleteQuantityById(product.id, 1);
+        renderCounter(cart.getItems());
       }
     }
 
     showCart(cart.getShoppingCart());
   });
 });
+
+function renderCounter(count) {
+  store.setState(() => {
+    return {
+      count,
+    };
+  });
+}
 
 function showPrice() {
   const total = cart.totalPrice();
