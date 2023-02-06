@@ -15,19 +15,29 @@ const showCategories = document.querySelector(".js-show-categories");
 const navigation = document.querySelector(".js-navigation");
 const totalPrice = document.querySelector(".js-total-price");
 const btnBuy = document.querySelector(".js-btn-buy");
+const counter = document.querySelector(".js-counter");
 
 const inventary = new Inventory(INVENTARIO);
 const cart = new ShoppingCart();
 
 const CATEROGORY_MAP = {
-  [HOME_CATEGORY]: "Home",
+  [HOME_CATEGORY]: "Home use",
   [PERSONAL_USE_CATEGORY]: "Personal Use",
   [FOOD_CATEGORY]: "Food",
 };
 
+const store = killa.createStore({ count: 0, filter: "ALL" });
+
 document.addEventListener("DOMContentLoaded", () => {
   renderProducts(inventary.getInventory());
   renderCategories(inventary.getCategories());
+
+  store.subscribe(
+    (state) => {
+      counter.textContent = state.count || "";
+    },
+    (state) => state.count
+  );
 
   btnCart.addEventListener("click", (event) => {
     event.preventDefault();
@@ -45,14 +55,19 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
     productsList.innerHTML = "";
 
-    cart.buy((cart) => {
+    const isOK = cart.buy((cart) => {
       return cart.products.every((product) => {
         return inventary.deleteQuantity(product.id, product.quantity);
       });
     });
-    showCart(cart.getShoppingCart());
 
-    renderProducts(inventary.getInventory());
+    if (isOK) {
+      const { filter } = store.getState();
+      renderProductsByCategory(filter);
+      updateCounter(cart.getItems());
+      showCart(cart.getShoppingCart());
+      return;
+    }
   });
 
   showCategories.addEventListener("click", (event) => {
@@ -61,15 +76,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const filter = target.dataset.filter;
 
     if (target.classList.contains("js-category") && filter) {
-      productsList.innerHTML = "";
-      let products = [];
+      const activeElements = document.querySelectorAll(".active");
+      activeElements.forEach((element) => {
+        element.classList.remove("active");
+      });
 
-      if (filter === "ALL") {
-        products = inventary.getInventory();
-      } else {
-        products = inventary.getProductsByCategory(filter);
-      }
-      renderProducts(products);
+      target.classList.add("active");
+      store.setState((state) => {
+        return {
+          ...state,
+          filter,
+        };
+      });
+
+      renderProductsByCategory(filter);
     }
   });
 
@@ -81,10 +101,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (target.classList.contains("js-btn-add-product")) {
       const id = target.dataset.productId;
       const product = inventary.getProductById(parseInt(id));
-      const isAdded = cart.addProductCart(product, 1);
-      ap.classList.add("speed-in");
+
+      cart.addProductCart(product, 1);
     }
     showCart(cart.getShoppingCart());
+    updateCounter(cart.getItems());
   });
 
   cartList.addEventListener("click", (event) => {
@@ -97,16 +118,39 @@ document.addEventListener("DOMContentLoaded", () => {
       const product = inventary.getProductById(parseInt(id));
       if (target.classList.contains("js-add-quntity")) {
         cart.addProductCart(product, 1);
+        updateCounter(cart.getItems());
       }
 
       if (target.classList.contains("js-delete-quntity")) {
         cart.deleteQuantityById(product.id, 1);
+        updateCounter(cart.getItems());
       }
     }
 
     showCart(cart.getShoppingCart());
   });
 });
+
+function renderProductsByCategory(category) {
+  productsList.innerHTML = "";
+  let products = [];
+
+  if (category === "ALL") {
+    products = inventary.getInventory();
+  } else {
+    products = inventary.getProductsByCategory(category);
+  }
+
+  renderProducts(products);
+}
+
+function updateCounter(count) {
+  store.setState(() => {
+    return {
+      count,
+    };
+  });
+}
 
 function showPrice() {
   const total = cart.totalPrice();

@@ -7,6 +7,10 @@ export class ShoppingCart {
     return this.products;
   }
 
+  getItems() {
+    return this.products.reduce((acc, cur) => acc + cur.quantity, 0);
+  }
+
   addProductCart(product, quantity) {
     let index = this.products.findIndex((data) => data.id === product.id);
     let productInsideCart = this.products[index];

@@ -41,6 +41,15 @@ body {
   align-items: baseline;
 }
 
+.list__item.active {
+  color: #f8f3f3;
+}
+
+a:hover {
+  color: #edecec;
+  transition: all 0.30s;
+}
+
 .container {
   max-width: 1200px;
   width: 100%;
@@ -118,7 +127,7 @@ body {
   width: 360px;
   z-index: 1;
   overflow-y: scroll;
-  transition: all 1s linear;
+  transition: all 0.4s ease-out;
   box-shadow: -2px 0 4px hsl(0 4% 15% / 10%);
   opacity: 0.9;
 }
@@ -231,9 +240,18 @@ body {
 }
 
 @media screen and (max-width: 640px) {
+  .products__actions {
+    opacity: 6;
+
+  }
 
   .header__container {
     text-align: center;
+  }
+
+  .nav__list {
+    padding: 7px 0;
+    gap: 20px
   }
 
   .nav {
@@ -248,6 +266,17 @@ body {
 @media screen and (min-width: 640px) and (max-width: 1280px) {
   .header__container {
     text-align: center;
+
+  }
+
+  .nav__list {
+    padding: 7px 0;
+    gap: 20px
+  }
+
+  .products__actions {
+    opacity: 6;
+
   }
 
   .nav {
