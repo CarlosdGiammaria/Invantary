@@ -6,9 +6,8 @@ export const INVENTARIO = [
   {
     id: 1,
     name: "jabon",
-    description: "jabon verde de natura",
-    image:
-      "https://cdn.lorem.space/images/face/.cache/150x220/nico-marks-25gAg2MOXxQ-unsplash.jpg",
+    description: "jabon verde natural",
+    image: "./img/jabón_de_baño.png",
     quantity: 12,
     price: 2000,
     category: HOME_CATEGORY,
@@ -17,8 +16,7 @@ export const INVENTARIO = [
     id: 2,
     name: "cepillo",
     description: "color rojo, tripe  cepillo",
-    image:
-      "https://cdn.lorem.space/images/face/.cache/150x220/jake-fagan-Y7C7F26fzZM-unsplash.jpg",
+    image: "./img/cepillo_de_dente.jpeg",
     quantity: 12,
     price: 2000,
     category: PERSONAL_USE_CATEGORY,
@@ -27,8 +25,7 @@ export const INVENTARIO = [
     id: 3,
     name: "escoba",
     description: "roja, bara de acero",
-    image:
-      "https://cdn.lorem.space/images/face/.cache/450x660/omer-karakus-AjGyA81epeI-unsplash.jpg",
+    image: "./img/escoba.jpeg",
     quantity: 15,
     price: 1000,
     category: HOME_CATEGORY,
@@ -37,10 +34,29 @@ export const INVENTARIO = [
     id: 4,
     name: "tomate",
     description: "vegetal, rojo con semillas",
-    image:
-      "https://cdn.lorem.space/images/face/.cache/150x220/rachel-mcdermott-0fN7Fxv1eWA-unsplash.jpg",
+    image: "./img/tomate.jpeg",
     quantity: 15,
     price: 2300,
     category: FOOD_CATEGORY,
+  },
+
+  {
+    id: 5,
+    name: "manzana",
+    description: "fruta",
+    image: "https://biotrendies.com/wp-content/uploads/2015/06/manzana.jpg",
+    quantity: 10,
+    price: 1600,
+    category: FOOD_CATEGORY,
+  },
+  {
+    id: 6,
+    name: "hilo dental",
+    description: "sabor a menta fresca",
+    image:
+      "https://www.colgate.com/content/dam/cp-sites/oral-care/oral-care-center/es-co/product-detail-pages/specialty/hilo-dental-colgate-menta-50m-pack.jpg",
+    quantity: 20,
+    price: 1200,
+    category: PERSONAL_USE_CATEGORY,
   },
 ];

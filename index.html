@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+
+    <title>Store</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__container">
+        <h1 class="header__title">CG Store</h1>
+        <h5 class="header__subtitle">
+          Always handling the best products and prices
+        </h5>
+      </div>
+
+      <nav class="nav hide js-navigation">
+        <ul class="nav__list js-show-categories">
+          <li>
+            <a href="" class="list__item js-category" data-filter="ALL"
+              >Products</a
+            >
+          </li>
+        </ul>
+      </nav>
+      <div class="btn js-btn-cart">
+        <i class="fa-sharp fa-solid fa-cart-shopping icon"></i>
+      </div>
+
+      <div class="js-cart shopping-cart">
+        <div class="shopping-cart__top">
+          <button class="btn js-btn-exit">
+            <i class="fa-sharp fa-solid fa-circle-xmark icon"></i>
+          </button>
+          <h3 class="shopping-cart__title">Your Products</h3>
+        </div>
+
+        <ul class="shopping-cart__list js-cart-list"></ul>
+        <div class="shopping-cart__payable-value js-payable-value">
+          <span class="js-total-price">$0</span>
+          <button class="btn btn--success js-btn-buy">
+            <i class="fa-solid fa-cart-arrow-down icon"></i>
+          </button>
+        </div>
+      </div>
+      <!--  -->
+    </header>
+
+    <main class="container">
+      <ul class="products js-products-list"></ul>
+    </main>
+    <script
+      src="https://kit.fontawesome.com/b383ff7588.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/killa@0.1.2/dist/killa.min.js"></script>
+    <script src="./javascript/index.js" type="module"></script>
+  </body>
+</html>
