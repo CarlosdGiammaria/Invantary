@@ -7,7 +7,7 @@ export const INVENTARIO = [
     id: 1,
     name: "jabon",
     description: "jabon verde natural",
-    image: "./img/jabón_de_baño.png",
+    image: "./img/jabón_de_baño.png",
     quantity: 12,
     price: 2000,
     category: HOME_CATEGORY,
